@@ -24,7 +24,6 @@ class ViewController: UIViewController {
     private var timer: Timer?
     private var timeString: String? {
         didSet {
-            print("time: \(timeString)")
             guard let newTime = timeString else { return }
             updateClockViewWith(oldTime: oldValue, newTime: newTime)
         }
@@ -57,7 +56,7 @@ class ViewController: UIViewController {
             clockStackView.addArrangedSubview(view)
             view.viewCreator = self
             view.valueUpdater = self
-            view.passType = .bottomToTop
+            view.transitional = CPPassageViewBottomToTopTransition()
 
             view.snp.makeConstraints { maker in
                 maker.height.equalTo(30)
@@ -67,7 +66,7 @@ class ViewController: UIViewController {
 
         clockStackView.insertArrangedSubview(hourAndMinuteSeparatorLabel, at: 2)
         clockStackView.insertArrangedSubview(minuteAndSecondSeparatorLabel, at: 5)
-        clockStackView.alignment = .center
+        clockStackView.alignment = .fill
         clockStackView.axis = .horizontal
 
         backgroundView.backgroundColor = UIColor.black
@@ -120,23 +119,23 @@ class ViewController: UIViewController {
 
     @objc
     func changePassType(button: UIButton) {
-        let passType: CPPassDirection = {
+        let transitional: CPPassageViewTransitional = {
             switch button {
             case bottomToTopButton:
-                return CPPassDirection.bottomToTop
+                return CPPassageViewBottomToTopTransition()
             case topToBottomButton:
-                return CPPassDirection.topToBottom
+                return CPPassageViewTopToBottomTransition()
             case leadingToTrailingButton:
-                return CPPassDirection.leadingToTrailing
+                return CPPassageViewLeadingToTrailingTransition()
             case trailingToLeadingButton:
-                return CPPassDirection.trailingToLeading
+                return CPPassageViewTrailingToLeadingTransition()
             default:
-                return CPPassDirection.bottomToTop
+                return CPPassageViewBottomToTopTransition()
             }
         }()
 
         passageViews.forEach {
-            $0.passType = passType
+            $0.transitional = transitional
         }
     }
 
@@ -151,7 +150,7 @@ class ViewController: UIViewController {
         (0..<passageViews.count)
                 .filter { index in
                     let stringIndex = oldTime.index(oldTime.startIndex, offsetBy: index)
-                    return oldTime.characters[stringIndex] != newTime.characters[stringIndex]
+                    return oldTime[stringIndex] != newTime[stringIndex]
                 }
                 .map {
                     return passageViews[$0]
@@ -163,7 +162,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: CPPassageViewCreatable {
-    func createView() -> UIView {
+    func createView(passageView: CPPassageView) -> UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 30, weight: .medium)
@@ -183,9 +182,9 @@ extension ViewController: CPPassageViewValueUpdateable {
             label.text = "-"
             return
         }
-        
+
         let stringIndex = timeString.index(timeString.startIndex, offsetBy: index)
-        let digitCharacter = timeString.characters[stringIndex]
+        let digitCharacter = timeString[stringIndex]
         label.text = "\(digitCharacter)"
     }
 }

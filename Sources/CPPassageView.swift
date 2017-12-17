@@ -4,7 +4,6 @@
 //
 
 import UIKit
-import SnapKit
 
 public class CPPassageView: UIView {
     public weak var viewCreator: CPPassageViewCreatable? {
@@ -18,17 +17,11 @@ public class CPPassageView: UIView {
             setFirstValue()
         }
     }
-    public weak var delegate: PassageViewDelegate?
-
-    public var passType: CPPassDirection = .topToBottom {
-        didSet {
-            updateValueViewConstraints()
-        }
-    }
+    public weak var delegate: CPPassageViewDelegate?
+    public var transitional: CPPassageViewTransitional?
 
     private var currentValueView: UIView?
     private var nextValueView: UIView?
-    private var offsetConstraint: Constraint?
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -44,32 +37,38 @@ public class CPPassageView: UIView {
         clipsToBounds = true
     }
 
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+
+        currentValueView?.frame = bounds
+        nextValueView?.frame = bounds
+    }
+
     public func refresh() {
+        guard let currentValueView = currentValueView else {
+            assertionFailure()
+            return
+        }
+        guard let nextValueView = nextValueView else {
+            assertionFailure()
+            return
+        }
+
         updateCurrentValue(for: nextValueView)
 
-        switch passType {
-        case .topToBottom:
-            offsetConstraint?.update(offset: bounds.height)
-        case .bottomToTop:
-            offsetConstraint?.update(offset: -bounds.height)
-        case .leadingToTrailing:
-            offsetConstraint?.update(offset: bounds.width)
-        case .trailingToLeading:
-            offsetConstraint?.update(offset: -bounds.width)
-        }
-        
-        UIView.animate(withDuration: 0.5, delay: 0, options: [UIViewAnimationOptions.curveEaseInOut], animations: { [weak self] in
-            self?.layoutIfNeeded()
-        }, completion: { [weak self] _ in
-            self?.switchViews()
-            self?.updateValueViewConstraints()
+        if let transitional = transitional {
+            transitional.transit(from: currentValueView, to: nextValueView) { [weak self] in
+                guard let ss = self else { return }
 
-            DispatchQueue.main.async {
-                if let ss = self {
-                    ss.delegate?.didUpdatedValue(passageView: ss)
-                }
+                ss.currentValueView?.frame.size = ss.bounds.size
+                ss.nextValueView?.frame.size = ss.bounds.size
+                ss.switchViews()
             }
-        })
+        } else {
+            nextValueView.frame = bounds
+            switchViews()
+            delegate?.didUpdatedValue(passageView: self)
+        }
     }
 
     private func switchViews() {
@@ -79,73 +78,23 @@ public class CPPassageView: UIView {
     }
 
     private func createViews() {
-        currentValueView?.removeFromSuperview()
-        nextValueView?.removeFromSuperview()
+        self.currentValueView?.removeFromSuperview()
+        self.nextValueView?.removeFromSuperview()
 
         guard let viewCreator = viewCreator else { return }
 
-        currentValueView = viewCreator.createView()
-        nextValueView = viewCreator.createView()
+        let currentValueView: UIView = viewCreator.createView(passageView: self)
+        let nextValueView: UIView = viewCreator.createView(passageView: self)
 
-        addSubview(currentValueView!)
-        addSubview(nextValueView!)
+        addSubview(currentValueView)
+        addSubview(nextValueView)
 
-        updateValueViewConstraints()
-    }
+        self.currentValueView = currentValueView
+        self.nextValueView = nextValueView
 
-    private func updateValueViewConstraints() {
-        updateCurrentValueConstraint()
-        updateNextValueConstraint()
-    }
-
-    private func updateCurrentValueConstraint() {
-        guard let view = currentValueView else { return }
-        view.snp.remakeConstraints { maker in
-            maker.size.equalToSuperview()
-
-            switch passType {
-            case .topToBottom:
-                maker.leading.equalToSuperview()
-                offsetConstraint = maker.bottom.equalToSuperview().constraint
-            case .bottomToTop:
-                maker.leading.equalToSuperview()
-                offsetConstraint = maker.top.equalToSuperview().constraint
-            case .leadingToTrailing:
-                maker.top.equalToSuperview()
-                offsetConstraint = maker.trailing.equalToSuperview().constraint
-            case .trailingToLeading:
-                maker.top.equalToSuperview()
-                offsetConstraint = maker.leading.equalToSuperview().constraint
-            }
-        }
-    }
-
-    private func updateNextValueConstraint() {
-        guard let currentValueView = currentValueView else { return }
-        guard let nextValueView = nextValueView else { return }
-        nextValueView.snp.remakeConstraints { maker in
-            maker.size.equalToSuperview()
-
-            switch passType {
-            case .topToBottom:
-                maker.leading.equalToSuperview()
-                maker.bottom.equalTo(currentValueView.snp.top)
-            case .bottomToTop:
-                maker.leading.equalToSuperview()
-                maker.top.equalTo(currentValueView.snp.bottom)
-            case .leadingToTrailing:
-                maker.top.equalToSuperview()
-                maker.trailing.equalTo(currentValueView.snp.leading)
-            case .trailingToLeading:
-                maker.top.equalToSuperview()
-                maker.leading.equalTo(currentValueView.snp.trailing)
-            }
-        }
     }
 
     private func setFirstValue() {
-        guard let creator = viewCreator else { return }
-        guard let updater = valueUpdater else { return }
         updateCurrentValue(for: currentValueView)
         delegate?.didUpdatedValue(passageView: self)
     }

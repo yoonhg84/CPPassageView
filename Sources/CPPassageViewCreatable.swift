@@ -6,5 +6,5 @@
 import UIKit
 
 public protocol CPPassageViewCreatable: class {
-    func createView() -> UIView
+    func createView(passageView: CPPassageView) -> UIView
 }

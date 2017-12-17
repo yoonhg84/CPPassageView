@@ -5,6 +5,6 @@
 
 import Foundation
 
-public protocol PassageViewDelegate: class {
+public protocol CPPassageViewDelegate: class {
     func didUpdatedValue(passageView: CPPassageView)
 }

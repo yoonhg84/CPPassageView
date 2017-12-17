@@ -11,20 +11,22 @@
 		3E11B0CB1B1CD9C1B2605FCB /* CPPassageViewValueUpdateable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E11B7FD51FB98BF641BA8B1 /* CPPassageViewValueUpdateable.swift */; };
 		3E11B374E501E97DDBBBAA0E /* CPPassageViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E11B06A45B38509625056AD /* CPPassageViewDelegate.swift */; };
 		3E11B8F2D07D6CB30958FDD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E11BC646748A1BF98F3C531 /* Assets.xcassets */; };
+		3E11BA156F3908B65739306C /* CPPassageViewTransitional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E11B563200E1359B47D4A93 /* CPPassageViewTransitional.swift */; };
 		3E11BBEDCBB9D61753A6DAB5 /* CPPassageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E11B940E6CE0E935B4778F8 /* CPPassageView.swift */; };
 		3E11BC344E3A19573651E2EB /* CPPassageViewCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E11BE78E46E6DC21D7C17CA /* CPPassageViewCreatable.swift */; };
-		3E11BCA5E580B199E1A9C44B /* CPPassType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E11B2724E3E11B0637BD89D /* CPPassType.swift */; };
 		3E11BD0B8BF507D4F20A23C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E11B899B8DBCAB4849F29D4 /* AppDelegate.swift */; };
 		3E11BD4FB2DF801BF2B9C81C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E11B8308E9463E59B0B44C4 /* LaunchScreen.storyboard */; };
 		3E11BD5E5ECF9DCDAF4C984C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E11B66CB9FFCFD3E5EF76A2 /* ViewController.swift */; };
 		3E11BE8DFB85663402C296B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E11B681C9891EC7EC808977 /* Main.storyboard */; };
+		3E11BF76A009B54A8D591F2B /* CPPassageView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 3E11B26EE57654FA708A1211 /* CPPassageView.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3E11B06A45B38509625056AD /* CPPassageViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPassageViewDelegate.swift; sourceTree = "<group>"; };
 		3E11B08638A6F4C3C691C2F7 /* PassageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E11B2724E3E11B0637BD89D /* CPPassType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPassType.swift; sourceTree = "<group>"; };
+		3E11B26EE57654FA708A1211 /* CPPassageView.podspec */ = {isa = PBXFileReference; lastKnownFileType = file.podspec; path = CPPassageView.podspec; sourceTree = "<group>"; };
 		3E11B42D10DEA0266968F4CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3E11B563200E1359B47D4A93 /* CPPassageViewTransitional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPassageViewTransitional.swift; sourceTree = "<group>"; };
 		3E11B566B41F9E5D4F605E9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E11B66CB9FFCFD3E5EF76A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3E11B7FD51FB98BF641BA8B1 /* CPPassageViewValueUpdateable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPassageViewValueUpdateable.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				3E11B2477F580980F87A8B59 /* Sources */,
 				3FE067BF7AC34EE6B7F6F496 /* Pods */,
 				95C16898A0BA5A2C67272AA1 /* Frameworks */,
+				3E11B26EE57654FA708A1211 /* CPPassageView.podspec */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,11 +80,11 @@
 		3E11B2477F580980F87A8B59 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				3E11B2724E3E11B0637BD89D /* CPPassType.swift */,
 				3E11B940E6CE0E935B4778F8 /* CPPassageView.swift */,
 				3E11B7FD51FB98BF641BA8B1 /* CPPassageViewValueUpdateable.swift */,
 				3E11BE78E46E6DC21D7C17CA /* CPPassageViewCreatable.swift */,
 				3E11B06A45B38509625056AD /* CPPassageViewDelegate.swift */,
+				3E11B563200E1359B47D4A93 /* CPPassageViewTransitional.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				3E11B8F2D07D6CB30958FDD5 /* Assets.xcassets in Resources */,
 				3E11BD4FB2DF801BF2B9C81C /* LaunchScreen.storyboard in Resources */,
 				3E11BE8DFB85663402C296B0 /* Main.storyboard in Resources */,
+				3E11BF76A009B54A8D591F2B /* CPPassageView.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,11 +237,11 @@
 			files = (
 				3E11BD0B8BF507D4F20A23C5 /* AppDelegate.swift in Sources */,
 				3E11BD5E5ECF9DCDAF4C984C /* ViewController.swift in Sources */,
-				3E11BCA5E580B199E1A9C44B /* CPPassType.swift in Sources */,
 				3E11BBEDCBB9D61753A6DAB5 /* CPPassageView.swift in Sources */,
 				3E11B0CB1B1CD9C1B2605FCB /* CPPassageViewValueUpdateable.swift in Sources */,
 				3E11BC344E3A19573651E2EB /* CPPassageViewCreatable.swift in Sources */,
 				3E11B374E501E97DDBBBAA0E /* CPPassageViewDelegate.swift in Sources */,
+				3E11BA156F3908B65739306C /* CPPassageViewTransitional.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +309,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -379,7 +383,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
