@@ -12,12 +12,11 @@ public class CPPassageView: UIView {
             setFirstValue()
         }
     }
-    public weak var valueUpdater: CPPassageViewValueUpdateable? {
+    public weak var delegate: CPPassageViewDelegate? {
         didSet {
             setFirstValue()
         }
     }
-    public weak var delegate: CPPassageViewDelegate?
     public var transitional: CPPassageViewTransitional?
 
     private var currentValueView: UIView?
@@ -55,6 +54,7 @@ public class CPPassageView: UIView {
         }
 
         updateCurrentValue(for: nextValueView)
+        delegate?.willDisappear(view: currentValueView, in: self)
 
         if let transitional = transitional {
             transitional.transit(from: currentValueView, to: nextValueView) { [weak self] in
@@ -63,11 +63,12 @@ public class CPPassageView: UIView {
                 ss.currentValueView?.frame.size = ss.bounds.size
                 ss.nextValueView?.frame.size = ss.bounds.size
                 ss.switchViews()
+                ss.delegate?.didUpdated(passageView: ss)
             }
         } else {
             nextValueView.frame = bounds
             switchViews()
-            delegate?.didUpdatedValue(passageView: self)
+            delegate?.didUpdated(passageView: self)
         }
     }
 
@@ -91,17 +92,15 @@ public class CPPassageView: UIView {
 
         self.currentValueView = currentValueView
         self.nextValueView = nextValueView
-
     }
 
     private func setFirstValue() {
         updateCurrentValue(for: currentValueView)
-        delegate?.didUpdatedValue(passageView: self)
+        delegate?.didUpdated(passageView: self)
     }
 
     private func updateCurrentValue(for view: UIView?) {
         guard let view = view else { return }
-        guard let valueUpdater = valueUpdater else { return }
-        valueUpdater.updateCurrentValue(for: view, in: self)
+        delegate?.updateCurrent(view: view, in: self)
     }
 }

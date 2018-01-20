@@ -55,7 +55,7 @@ class ViewController: UIViewController {
         passageViews.forEach { view in
             clockStackView.addArrangedSubview(view)
             view.viewCreator = self
-            view.valueUpdater = self
+            view.delegate = self
             view.transitional = CPPassageViewBottomToTopTransition()
 
             view.snp.makeConstraints { maker in
@@ -171,14 +171,14 @@ extension ViewController: CPPassageViewCreatable {
     }
 }
 
-extension ViewController: CPPassageViewValueUpdateable {
-    func updateCurrentValue(for view: UIView, in CPPassageView: CPPassageView) {
+extension ViewController: CPPassageViewDelegate {
+    func updateCurrent(view: UIView, in passageView: CPPassageView) {
         guard let label = view as? UILabel else { return }
         guard let timeString = timeString else {
             label.text = "-"
             return
         }
-        guard let index = passageViews.index(of: CPPassageView) else {
+        guard let index = passageViews.index(of: passageView) else {
             label.text = "-"
             return
         }
@@ -186,5 +186,14 @@ extension ViewController: CPPassageViewValueUpdateable {
         let stringIndex = timeString.index(timeString.startIndex, offsetBy: index)
         let digitCharacter = timeString[stringIndex]
         label.text = "\(digitCharacter)"
+    }
+
+    func willDisappear(view: UIView, in passageView: CPPassageView) {
+        guard let label = view as? UILabel else { return }
+        label.text = "*"
+    }
+
+    func didUpdated(passageView: CPPassageView) {
+        print("didUpdated")
     }
 }

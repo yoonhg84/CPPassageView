@@ -3,8 +3,10 @@
 // Copyright (c) 2017 Chope. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public protocol CPPassageViewDelegate: class {
-    func didUpdatedValue(passageView: CPPassageView)
+    func updateCurrent(view: UIView, in passageView: CPPassageView)
+    func willDisappear(view: UIView, in passageView: CPPassageView)
+    func didUpdated(passageView: CPPassageView)
 }

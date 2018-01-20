@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		06365D316B876518D1D907E8 /* Pods_PassageView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B831EFE65E8F006369E659F7 /* Pods_PassageView.framework */; };
-		3E11B0CB1B1CD9C1B2605FCB /* CPPassageViewValueUpdateable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E11B7FD51FB98BF641BA8B1 /* CPPassageViewValueUpdateable.swift */; };
 		3E11B374E501E97DDBBBAA0E /* CPPassageViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E11B06A45B38509625056AD /* CPPassageViewDelegate.swift */; };
 		3E11B8F2D07D6CB30958FDD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E11BC646748A1BF98F3C531 /* Assets.xcassets */; };
 		3E11BA156F3908B65739306C /* CPPassageViewTransitional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E11B563200E1359B47D4A93 /* CPPassageViewTransitional.swift */; };
@@ -27,7 +26,6 @@
 		3E11B563200E1359B47D4A93 /* CPPassageViewTransitional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPassageViewTransitional.swift; sourceTree = "<group>"; };
 		3E11B566B41F9E5D4F605E9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E11B66CB9FFCFD3E5EF76A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3E11B7FD51FB98BF641BA8B1 /* CPPassageViewValueUpdateable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPassageViewValueUpdateable.swift; sourceTree = "<group>"; };
 		3E11B899B8DBCAB4849F29D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E11B940E6CE0E935B4778F8 /* CPPassageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPassageView.swift; sourceTree = "<group>"; };
 		3E11BC646748A1BF98F3C531 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				3E11B940E6CE0E935B4778F8 /* CPPassageView.swift */,
-				3E11B7FD51FB98BF641BA8B1 /* CPPassageViewValueUpdateable.swift */,
 				3E11BE78E46E6DC21D7C17CA /* CPPassageViewCreatable.swift */,
 				3E11B06A45B38509625056AD /* CPPassageViewDelegate.swift */,
 				3E11B563200E1359B47D4A93 /* CPPassageViewTransitional.swift */,
@@ -234,7 +231,6 @@
 				3E11BD0B8BF507D4F20A23C5 /* AppDelegate.swift in Sources */,
 				3E11BD5E5ECF9DCDAF4C984C /* ViewController.swift in Sources */,
 				3E11BBEDCBB9D61753A6DAB5 /* CPPassageView.swift in Sources */,
-				3E11B0CB1B1CD9C1B2605FCB /* CPPassageViewValueUpdateable.swift in Sources */,
 				3E11BC344E3A19573651E2EB /* CPPassageViewCreatable.swift in Sources */,
 				3E11B374E501E97DDBBBAA0E /* CPPassageViewDelegate.swift in Sources */,
 				3E11BA156F3908B65739306C /* CPPassageViewTransitional.swift in Sources */,
