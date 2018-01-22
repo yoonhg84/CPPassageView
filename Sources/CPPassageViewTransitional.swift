@@ -20,6 +20,8 @@ public struct CPPassageViewBottomToTopTransition: CPPassageViewTransitional, CPP
     public var delay: TimeInterval = 0
     public var options: UIViewAnimationOptions = [ UIViewAnimationOptions.curveEaseOut ]
 
+    public init() {}
+
     public func transit(from fromView: UIView, to toView: UIView, completion: @escaping () -> ()) {
         toView.frame.origin.x = 0
         toView.frame.origin.y = fromView.bounds.height
@@ -38,6 +40,8 @@ public struct CPPassageViewTopToBottomTransition: CPPassageViewTransitional, CPP
     public var delay: TimeInterval = 0
     public var options: UIViewAnimationOptions = [ UIViewAnimationOptions.curveEaseInOut ]
 
+    public init() {}
+
     public func transit(from fromView: UIView, to toView: UIView, completion: @escaping () -> ()) {
         toView.frame.origin.x = 0
         toView.frame.origin.y = -fromView.bounds.height
@@ -55,6 +59,8 @@ public struct CPPassageViewLeadingToTrailingTransition: CPPassageViewTransitiona
     public var duration: TimeInterval = 0.3
     public var delay: TimeInterval = 0
     public var options: UIViewAnimationOptions = [ UIViewAnimationOptions.curveEaseInOut ]
+
+    public init() {}
 
     public func transit(from fromView: UIView, to toView: UIView, completion: @escaping () -> ()) {
         let isRTL: Bool = (UIView.userInterfaceLayoutDirection(for: toView.semanticContentAttribute) == .rightToLeft)
@@ -75,6 +81,8 @@ public struct CPPassageViewTrailingToLeadingTransition: CPPassageViewTransitiona
     public var duration: TimeInterval = 0.3
     public var delay: TimeInterval = 0
     public var options: UIViewAnimationOptions = [ UIViewAnimationOptions.curveEaseInOut ]
+
+    public init() {}
 
     public func transit(from fromView: UIView, to toView: UIView, completion: @escaping () -> ()) {
         let isRTL: Bool = (UIView.userInterfaceLayoutDirection(for: toView.semanticContentAttribute) == .rightToLeft)

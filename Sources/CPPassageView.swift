@@ -17,10 +17,11 @@ public class CPPassageView: UIView {
             setFirstValue()
         }
     }
+
     public var transitional: CPPassageViewTransitional?
 
-    private var currentValueView: UIView?
-    private var nextValueView: UIView?
+    public private(set) var currentValueView: UIView?
+    public private(set) var nextValueView: UIView?
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
